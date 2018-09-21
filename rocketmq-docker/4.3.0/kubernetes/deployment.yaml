@@ -18,10 +18,10 @@ spec:
           - containerPort: 10911
         volumeMounts:
           - mountPath: /opt/logs
-            name: brokeroptlogs
+            name: broker-pv
             subPath: logs
           - mountPath: /opt/store
-            name: brokeroptstore
+            name: broker-pv
             subPath: store
       - name: namesrv
         image: arilot/rocketmq-namesrv:4.3.0-k8s
@@ -30,23 +30,17 @@ spec:
           - containerPort: 9876
         volumeMounts:
           - mountPath: /opt/logs
-            name: namesrvoptlogs
+            name: namesrv-pv
             subPath: logs
           - mountPath: /opt/store
-            name: namesrvoptstore
+            name: namesrv-pv
             subPath: store
       volumes:
-      - name: brokeroptlogs
+      - name: broker-pv
         persistentVolumeClaim:
-          claimName: broker-pv
-      - name: brokeroptstore
+          claimName: rocketmq-broker-pv
+      - name: namesrv-pv
         persistentVolumeClaim:
-          claimName: broker-pv
-      - name: namesrvoptlogs
-        persistentVolumeClaim:
-          claimName: namesrv-pv
-      - name: namesrvoptstore
-        persistentVolumeClaim:
-          claimName: namesrv-pv
+          claimName: rocketmq-namesrv-pv
       # nodeSelector:
       #      rocketmq: "on"
