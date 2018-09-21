@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: broker
-        image: apache/rocketmq-broker:4.3.0-k8s
+        image: arilot/rocketmq-broker:4.3.0-k8s
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 10909
@@ -22,7 +22,7 @@ spec:
           - mountPath: /opt/store
             name: brokeroptstore
       - name: namesrv
-        image: apache/rocketmq-namesrv:4.3.0-k8s
+        image: arilot/rocketmq-namesrv:4.3.0-k8s
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 9876
@@ -33,16 +33,20 @@ spec:
             name: namesrvoptstore
       volumes:
       - name: brokeroptlogs
-        hostPath:
-          path: /data/broker/logs
+        persistentVolumeClaim:
+          claimName: broker-pv
+          subPath: logs
       - name: brokeroptstore
-        hostPath:
-          path: /data/broker/store
+        persistentVolumeClaim:
+          claimName: broker-pv
+          subPath: store
       - name: namesrvoptlogs
-        hostPath:
-          path: /data/namesrv/logs
+        persistentVolumeClaim:
+          claimName: namesrv-pv
+          subPath: logs
       - name: namesrvoptstore
-        hostPath:
-          path: /data/namesrv/store
-      nodeSelector:
-           rocketmq: "on"
+        persistentVolumeClaim:
+          claimName: namesrv-pv
+          subPath: store
+      # nodeSelector:
+      #      rocketmq: "on"
