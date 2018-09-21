@@ -7,6 +7,6 @@ metadata:
 spec:
   ports:
     - port: 9876
-      name: "rocketmq-namesrv"
+      name: "9876-rocketmq-namesrv"
   selector:
     app: rocketmq

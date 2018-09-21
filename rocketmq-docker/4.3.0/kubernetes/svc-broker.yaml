@@ -7,8 +7,8 @@ metadata:
 spec:
   ports:
     - port: 10909
-      name: "10909 rocketmq-broker"
+      name: "10909-rocketmq-broker"
     - port: 10911
-      name: "10911 rocketmq-broker"
+      name: "10911-rocketmq-broker"
   selector:
     app: rocketmq
