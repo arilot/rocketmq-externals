@@ -5,7 +5,7 @@ metadata:
     volume.beta.kubernetes.io/storage-class: default
   labels:
     app: rocketmq
-  name: rocketmq-namesrv-pv
+  name: rocketmq-namesrv-pvc
 spec:
   accessModes:
   - ReadWriteOnce

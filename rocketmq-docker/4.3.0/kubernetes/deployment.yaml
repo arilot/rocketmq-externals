@@ -38,9 +38,9 @@ spec:
       volumes:
       - name: broker-pv
         persistentVolumeClaim:
-          claimName: rocketmq-broker-pv
+          claimName: rocketmq-broker-pvc
       - name: namesrv-pv
         persistentVolumeClaim:
-          claimName: rocketmq-namesrv-pv
+          claimName: rocketmq-namesrv-pvc
       # nodeSelector:
       #      rocketmq: "on"
