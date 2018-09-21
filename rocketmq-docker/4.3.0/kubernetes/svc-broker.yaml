@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: rocketmq
+  name: rocketmq-broker
+spec:
+  ports:
+    - port: 10909
+      name: "10909 rocketmq-broker"
+    - port: 10911
+      name: "10911 rocketmq-broker"
+  selector:
+    app: rocketmq
