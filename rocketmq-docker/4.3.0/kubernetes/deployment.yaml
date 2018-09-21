@@ -19,8 +19,10 @@ spec:
         volumeMounts:
           - mountPath: /opt/logs
             name: brokeroptlogs
+            subPath: logs
           - mountPath: /opt/store
             name: brokeroptstore
+            subPath: store
       - name: namesrv
         image: arilot/rocketmq-namesrv:4.3.0-k8s
         imagePullPolicy: IfNotPresent
@@ -29,24 +31,22 @@ spec:
         volumeMounts:
           - mountPath: /opt/logs
             name: namesrvoptlogs
+            subPath: logs
           - mountPath: /opt/store
             name: namesrvoptstore
+            subPath: store
       volumes:
       - name: brokeroptlogs
         persistentVolumeClaim:
           claimName: broker-pv
-          subPath: logs
       - name: brokeroptstore
         persistentVolumeClaim:
           claimName: broker-pv
-          subPath: store
       - name: namesrvoptlogs
         persistentVolumeClaim:
           claimName: namesrv-pv
-          subPath: logs
       - name: namesrvoptstore
         persistentVolumeClaim:
           claimName: namesrv-pv
-          subPath: store
       # nodeSelector:
       #      rocketmq: "on"
